@@ -5,10 +5,38 @@ E-mail service Application offer a big number of features such as sending and re
 and drafting mails, viewing contacts, adding and deleting contacts, sending attachments 
 and a lot of other features.
 ## Features
-  -sending, deleting, drafting mails
-  -viewing inbox, sent, draft and trash folders
-  -adding, deleting, and viewing contacts
+  - sending, deleting, drafting mails
+  - viewing inbox, sent, draft and trash folders
+  - adding, deleting, and viewing contacts
   - sending and receiving attachments
   - sorting mails by data, read and unread, level of importance
   - searching of mails by any keyword in the mail
-  -folder of important messages
+  - folder of important messages.
+ 
+## Installation
+This Apllication require angular and spring boot installation.
+##### Install the Angular CLI
+```sh
+npm install -g @angular/cli
+```
+##### Create a workspace and initial application
+```sh
+ng new my-app
+```
+##### Run Front 
+```sh
+cd my-app
+ng serve --open
+```
+##### spring boot installation
+Follow This link:
+[https://spring.io/guides/gs/spring-boot/]
+
+#### Run Application
+
+run server of spring boot
+Then in command line type:
+```sh
+ng serve --open
+```
+
