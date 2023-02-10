@@ -1,0 +1,42 @@
+<div class="emailList">
+    <div class="emailList_setting">
+        <div class="emailList_setting_left">
+            <button (click)="reload()">
+                <img src="../assets/icons/refresh.png">
+            </button>
+            <button title="delete" (click)="delete()">
+                <img src="../assets/icons/bin2.png">
+            </button>
+            <button title="move to important" title="unimportant" (click)="makeUnimportant()">
+                <img src="../assets/icons/important.png" >
+            </button>
+            <button title="mark as read" (click)="MakeRead()">
+                <img src="../assets/icons/mark_email_read.png" >
+            </button>
+            <button title="mark as unread" (click)="MakeunRead()">
+                <img src="../assets/icons/mark_email_unread.png">
+            </button>     
+        </div>
+        <div class="emailList_setting_right">
+        </div>
+    </div>
+
+    <div class="emailList_list">
+        <div class="email_row" *ngFor="let m of emails" [ngStyle] = "{'font-weight': (!m.read) ? 'bold' : ''}">
+            <div class="emil_options">
+                <input type="checkbox" (click)="check(m.id)">
+                <button>
+                    <img src="../assets/icons/star.png" class="icon">
+                </button>
+            </div>
+            <h3 class="email_title" (click)="open(m.id)" [routerLink] = "['/readMessage', m.name, m.From, m.To, m.subject, m.content, m.time,m.hasAttachment]" [ngStyle] = "{'font-weight': (!m.read) ? 'bold' : 'lighter'}">{{m.sender}}</h3>
+            <div class="email_row_message" (click)="open(m.id)" [routerLink] = "['/readMessage', m.name, m.From, m.To, m.subject, m.content, m.time,m.hasAttachment]">
+                <div class="_content">
+                    {{m.subject}} - {{m.body}}
+                </div>
+                <div class="time">{{m.date}}</div>
+            </div>
+            
+        </div>
+    </div>
+</div>

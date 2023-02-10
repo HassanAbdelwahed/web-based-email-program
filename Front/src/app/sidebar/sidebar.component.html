@@ -1,0 +1,44 @@
+<div class="sidebar" ng-app="myApp" >
+
+    <button class="compose icon" (click)="openMessageWindow()">
+        <img class="icon" src="../assets/icons/compose.png" >
+        <h4 *ngIf="menu">Compose</h4>
+    </button>
+
+    <div routerLink="/Inbox" (click)="setActive('Inbox')" 
+        class="sidebar_option" [class.active]="isActive('Inbox')">
+            <img class="icon" src="../assets/icons/inbox.png">
+            <h3 *ngIf="menu">Inbox</h3>
+    </div>
+
+    <div routerLink = "/Sent" (click)="setActive('Sent')"
+        class="sidebar_option" [class.active]="isActive('Sent')">
+            <img class="icon" src="../assets/icons/sent.png">
+            <h3 *ngIf="menu">Sent</h3>
+    </div>
+    
+    <div routerLink="/Draft" (click)="setActive('Draft')"
+        class="sidebar_option" [class.active]="isActive('Draft')">
+            <img class="icon" src="../assets/icons/draft.png">
+            <h3 *ngIf="menu">Drafts</h3>
+    </div>
+    
+    <div routerLink="/Trash" (click)="setActive('Trash')"
+        class="sidebar_option" [class.active]="isActive('Trash')">
+            <img class="icon" src="../assets/icons/bin.png">
+            <h3 *ngIf="menu">Trash</h3>
+    </div>
+    
+    <div routerLink="/Important" (click)="setActive('Important')"
+        class="sidebar_option" [class.active]="isActive('Important')">
+            <img class="icon" src="../assets/icons/imortant_side.png">
+            <h3 *ngIf="menu">Important</h3>
+    </div>
+
+    <div routerLink="/Contact" (click)="setActive('Contact')"
+        class="sidebar_option" [class.active]="isActive('Contact')">
+            <img class="icon" src="../assets/icons/contacts.png">
+            <h3 *ngIf="menu">Contacts</h3>
+    </div>
+    
+</div>

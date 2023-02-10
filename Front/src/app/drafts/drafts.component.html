@@ -1,0 +1,31 @@
+<div class="emailList">
+    <div class="emailList_setting">
+        <div class="emailList_setting_left">
+            <button  (click)="reload()" title="reload">
+                <img src="../assets/icons/refresh.png">
+            </button>
+            <button (click)="delete()" title="delete">
+                <img src="../assets/icons/bin2.png" >
+            </button>
+        </div>
+        <div class="emailList_setting_right">
+        </div>
+    </div>
+    <div class="emailList_list">
+        <div class="email_row" *ngFor="let m of emails">
+            <div class="emil_options">
+                <input class=m.id type="checkbox" (click)="check(m.id)">
+                <button>
+                    <img src="../assets/icons/star.png" class="icon">
+                </button>
+            </div>
+            <h5 class="email_title" (click)="openDraftMessage(m)">Draft</h5>
+            <div class="email_row_message" (click)="openDraftMessage(m)">
+                <div class="_content">
+                {{m.subject}} - {{m.body}}
+                </div>
+                <div class="time">{{m.date}}</div>
+            </div>
+        </div>
+    </div>
+</div>
