@@ -1,9 +1,5 @@
-
 <app-log-in-page class="login" *ngIf="login&&!signup"></app-log-in-page>
 <app-signup class="login" *ngIf="signup"></app-signup>
-
-
-
 
 <div class="header" *ngIf="!login">
     <div class="header_left">
@@ -12,15 +8,15 @@
     </div>
     <div class="header_middle">
         <img class="icon" src="../assets/icons/search.png">
-        
+
         <input type = "text" id = "search" placeholder="Search mail">
-        <!--
+
         <button type="button" class="search_option_icon">
             <img src="../assets/icons/search_option.png" (click)="openSearchOptions()">
         </button>
-        -->
-    </div> 
-    <div class="header_right"> 
+
+    </div>
+    <div class="header_right">
         <img class="icon" src="../assets/icons/account.png">
     </div>
 </div>
@@ -28,7 +24,7 @@
     <app-sidebar class="sidebar"></app-sidebar>
     <router-outlet></router-outlet>
 </div>
-<!--search form start-----
+<!-- search form start----- -->
 
 <div class="search_form" *ngIf="openSearchFrom">
     <form [formGroup]="searchFrom" name="search_form">
@@ -59,6 +55,14 @@
             <input id="_subject" type="text" formControlName="subject">
         </div>
         <div class="field">
+          <div>
+              <label for="_body">
+                  Body:
+              </label>
+          </div>
+          <input id="_body" type="text" formControlName="body">
+      </div>
+        <div class="field">
             <div>
                 <label for="_date">
                     Date:
@@ -67,14 +71,27 @@
             <input id="_date" type="datetime-local" formControlName="date">
         </div>
         <div class="attachment">
-            <input type="checkbox" id = "attach" formControlName="attach">
+            <input type="checkbox" id = "attach" [(ngModel)]="isChecked" formControlName="attach">
             <div>
                 <label for="attach">Has attachmet</label>
             </div>
         </div>
+        <div class="field">
+          <div>
+            <label for="_importance">Importance</label>
+         </div>
+          <select name="_priority" id="_importance" class="_select_priority">
+            <option value = "5">Very important</option>
+            <option value = "4">important</option>
+            <option value = "3">normal</option>
+            <option value = "2">not important</option>
+            <option value = "1">useless</option>
+          </select>
+      </div>
+
     </form>
 </div>
------->
+
 <!--search form end---------->
 
 <!--message form start--------------->
@@ -107,7 +124,7 @@
             <textarea id="content" cdkTextareaAutosize formControlName="content"></textarea>
         </div>
         <div>
-            <h4>importance : 
+            <h4>importance :
                 <select name="priority" id="importance" class="select_priority">
                     <option value = "5">Very important</option>
                     <option value = "4">important</option>
@@ -115,14 +132,14 @@
                     <option value = "2">not important</option>
                     <option value = "1">useless</option>
                 </select>
-            </h4> 
+            </h4>
         </div>
         <button  class="send_button" type="submit" (click)="send()">Send</button>
     </form>
     <input type="file" (change)="onFileSelected($event)" id="files" name="files" multiple><br><br>
 </div>
 
-<!--message form end-------------------->
+<!--message form end------------------ -->
 
 
 <div class="_form" *ngIf="isAddContact">

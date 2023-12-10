@@ -14,16 +14,15 @@ import { saveAs } from 'file-saver';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  
+
 })
 export class AppComponent implements OnInit{
   [x: string]: any;
   title(title: any) {
     throw new Error('Method not implemented.');
   }
-  
-  
 
+  isChecked = false;
   WriteMessage = false;
   openSearchFrom = false;
   isAddContact = false;                                              /**#####################contact################### */
@@ -40,6 +39,7 @@ export class AppComponent implements OnInit{
     from: new FormControl(null),
     to: new FormControl(null),
     subject: new FormControl(null),
+    body: new FormControl(null),
     date: new FormControl(null),
     attach:new FormControl(null)
   });
@@ -48,16 +48,16 @@ export class AppComponent implements OnInit{
     nameContact: new FormControl(null, Validators.required),
     emailContact: new FormControl(null, Validators.required)
   });
-   
+
   checkMessageForm = new FormGroup({
     to: new FormControl(null, Validators.required),
     subject: new FormControl(null, Validators.required),
     content: new FormControl(null, [Validators.required])
   });
-  
+
   ngOnInit(): void {
     throw new Error('Method not implemented.');
-    
+
   }
   files: File[] = [];
   onFileSelected(event:any){
@@ -74,7 +74,7 @@ export class AppComponent implements OnInit{
   onSubmitContact(){
     console.warn('Your order has been submitted', this.addContactForm.value);
   }
-  
+
   close(){
     this.http.delete('http://localhost:8080/deletingmail/' + this.email +"/"+this.id+"/").subscribe();
       const body = {
@@ -90,7 +90,6 @@ export class AppComponent implements OnInit{
       }
       this.http.post<boolean>('http://localhost:8080/draftingmail/' + this.email +"/", body).subscribe(data => {
           this.WriteMessage = false;
-            
       })
   }
 
@@ -110,7 +109,7 @@ export class AppComponent implements OnInit{
   }
   openSearchOptions(){
     //this.download(1672600870180);
-    alert("ssss")
+    //alert("ssss")
     if (this.openSearchFrom){
       this.openSearchFrom = false;
     }else{
@@ -120,24 +119,24 @@ export class AppComponent implements OnInit{
 
   activeButton:String = "Inbox";
   static flag:boolean = true;
-  
+
     onButtonGroupClick($event: { target: any; srcElement: any; }){
       let clickedElement = $event.target || $event.srcElement;
       // alert(clickedElement.nodeName)
       // alert(clickedElement.className)
       clickedElement.className += " active";
       if( clickedElement.nodeName === "div" ) {
-        
-  
+
+
         let isCertainButtonAlreadyActive = clickedElement.parentElement.querySelector(".active");
         // if a Button already has Class: .active
         if( isCertainButtonAlreadyActive ) {
           isCertainButtonAlreadyActive.classList.remove("active");
         }
-  
+
         clickedElement.className += " active";
       }
-  
+
     }
     setActive(buttonName: String){
       this.activeButton = buttonName;
@@ -176,7 +175,7 @@ export class AppComponent implements OnInit{
         "date" : " ",
       }
       this.http.post<boolean>('http://localhost:8080/sendingmail/' + this.email +"/", body).subscribe(data => {
-            
+
             var formData = new FormData();
             let x = (<HTMLInputElement>document.getElementById("files")).files
             if(x!=null)
@@ -193,15 +192,52 @@ export class AppComponent implements OnInit{
                 content: new FormControl(null, [Validators.required])
               });
               if((<HTMLInputElement>document.getElementById("files")).files?.length!=0){
-                
+
                 this.http.post<boolean>('http://localhost:8080/uploadattachment/' + this.email +
                   "/" + body.receiver+"/"+body.id+"/",formData).subscribe();
                 }
             }
-      })  
+      })
     }
+
+    allSearch(){
+      this.openSearchFrom = false;
+      const body = {
+        "sender": this.searchFrom.controls.from.value,
+        "receiver": this.searchFrom.controls.to.value,
+        "subject" : this.searchFrom.controls.subject.value,
+        "body" : this.searchFrom.controls.body.value,
+        "id" : 0,
+        "important" : false,
+        "read" : false,
+        "importance": (<HTMLInputElement>document.getElementById("_importance")).value,
+        "date" : this.searchFrom.controls.date.value,
+        "hasAttachment": this.isChecked
+      }
+      return body;
+      // console.log(body);
+
+      // this.http.post<any[]>('http://localhost:8080/allSearch/' + this.activeButton + "/" + this.email +"/", body).subscribe(data => {
+
+      //       if(!data){
+      //         alert("error");
+      //       }else{
+      //         console.log("hi", data);
+      //         //this.WriteMessage = false;
+      //         this.searchFrom = new FormGroup({
+      //           from: new FormControl(null),
+      //           to: new FormControl(null),
+      //           subject: new FormControl(null),
+      //           body: new FormControl(null),
+      //           date: new FormControl(null),
+      //           attach:new FormControl(null)
+      //         });
+      //       }
+      // })
+    }
+
     filenames: string[] = [];
-    
+
     download(id:any){
       this.filenames = [];
       this.http.get('http://localhost:8080/downloadattachment/'+this.email+"/"+id+"/",{
@@ -233,9 +269,9 @@ export class AppComponent implements OnInit{
             this.filenames.unshift(filename);
           }
         } else {
-          saveAs(new File([httpEvent.body!], httpEvent.headers.get('File-Name')!, 
+          saveAs(new File([httpEvent.body!], httpEvent.headers.get('File-Name')!,
                   {type: `${httpEvent.headers.get('Content-Type')};charset=utf-8`}));
-          // saveAs(new Blob([httpEvent.body!], 
+          // saveAs(new Blob([httpEvent.body!],
           //   { type: `${httpEvent.headers.get('Content-Type')};charset=utf-8`}),
           //    httpEvent.headers.get('File-Name'));
         }
@@ -244,7 +280,7 @@ export class AppComponent implements OnInit{
         default:
           console.log(httpEvent);
           break;
-      
+
     }
   }
   fileStatus = { status: '', requestType: '', percent: 0 };
@@ -257,6 +293,8 @@ export class AppComponent implements OnInit{
   closeContact(){
     this.isAddContact = false;
   }
-  
-  
+
+
+
+
 }

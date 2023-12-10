@@ -2,7 +2,7 @@
     flex: 0.3;
     max-width: 150px;
     padding-right: 20px;
-    
+
 }
 .sidebar .compose{
     margin-top: 10px;
@@ -52,8 +52,48 @@
 .sidebar_option:hover .icon,
 .active,
 .active h3,
-.active .icon{
+.active .icon, ._name:hover{
     background-color: #fcecec;
     color: #c04b37;
-    font-weight: 800;    
+    font-weight: 800;
 }
+
+.addFolder{
+  margin-top: 0px;
+}
+
+.folders{
+  margin-top: 10px;
+  margin-left: 2px;
+  margin-bottom: 5px;
+}
+
+.folders input{
+  border: 2px solid transparent;
+  border-radius: 10px;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  font-size: medium;
+  background-color: whitesmoke;
+  height: 20px;
+  margin-left: 5px;
+}
+
+._folders{
+  width: 100%;
+  margin-bottom: 5px;
+}
+._name{
+  width: 100%;
+  height: 100%;
+  line-height: 2;
+  padding-left: 5px;
+  margin-left: 5px;
+  margin-right: 0px;
+}
+
+.folders-buttons{
+  display: flex;
+}
+

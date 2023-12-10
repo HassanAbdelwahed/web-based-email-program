@@ -21,6 +21,7 @@ export class ReadMessageComponent implements OnInit {
   hasAttachment: boolean = false;
 
   ngOnInit(): void {
+    console.log("ok");
     let id = "";
     const routeParams = this.route.snapshot.paramMap;
     id = (routeParams.get('id')) == null? "" : (routeParams.get('id')!);
@@ -33,7 +34,7 @@ export class ReadMessageComponent implements OnInit {
     this.id = +id;
     this.hasAttachment = (routeParams.get('hasAttachment')) == 'true';
     this.setRead();
-   
+
   }
 
   download(){
@@ -41,9 +42,9 @@ export class ReadMessageComponent implements OnInit {
   }
 
   setRead(){
-    
+
     //id of message should sent to back end to set read = true
-      
+
   }
-  
+
 }

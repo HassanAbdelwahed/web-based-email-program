@@ -24,16 +24,19 @@
             </button>
             <button title="mark as unread" (click)="MakeunRead()">
                 <img src="../assets/icons/mark_email_unread.png" >
+            </button> 
+            <button title="move to folders" (click)="moveToFolders()">
+              <img src="../assets/icons/important.png" >
             </button>
             <select name="sorting" id="sort" class="select_priority" #mySelectSorting (change)='onOptionSortingSelected(mySelectSorting.value)'>
                 <option value = "none">None</option>
-                <option value = "sortinbox">Sort on date</option>
+                <option value = "sortDate">Sort on date</option>
                 <option value = "sortimportance">sort on importance</option>
             </select>
         </div>
         <div class="emailList_setting_right">
         </div>
-        
+
     </div>
 
     <div class="emailList_list">

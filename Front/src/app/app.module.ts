@@ -18,6 +18,8 @@ import { LogInPageComponent } from './log-in-page/log-in-page.component';
 import { SignupComponent } from './signup/signup.component';
 import { ReadMessageComponent} from './read-message/read-message.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { TestComponent } from './test/test.component';
+import { FolderComponent } from './folder/folder.component';
 
 
 
@@ -36,6 +38,8 @@ import { ContactsComponent } from './contacts/contacts.component';
     SignupComponent,
     ReadMessageComponent,
     ContactsComponent,
+    TestComponent,
+    FolderComponent,
 
   ],
   imports: [
@@ -48,11 +52,12 @@ import { ContactsComponent } from './contacts/contacts.component';
       { path: 'Contact', component: ContactsComponent},
       { path: 'Important', component: ImportantComponent},
       { path: 'readMessage/:name/:from/:to/:subject/:content/:time/:id/:hasAttachment', component: ReadMessageComponent},
+      { path: 'folder/:name', component: FolderComponent},
     ]),
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [AppComponent, ReadMessageComponent, InboxComponent],
+  providers: [AppComponent, ReadMessageComponent, InboxComponent, SidebarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

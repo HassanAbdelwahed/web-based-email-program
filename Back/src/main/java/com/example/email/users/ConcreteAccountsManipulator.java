@@ -22,7 +22,9 @@ public class ConcreteAccountsManipulator extends AbstractAccountsManipulation {
             "\"sent\": [],\n" +
             "\"draft\": [],\n" +
             "\"trash\": [],\n" +
-            "\"contacts\": []\n" +
+            "\"contacts\": [],\n" +
+            "\"folders\": [],\n" +
+            "\"important\": []\n" +
             "}";
 
     public boolean logIn(User user) throws IOException, ParseException {

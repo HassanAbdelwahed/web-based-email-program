@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { ReadMessageComponent } from '../read-message/read-message.component';
+import { delay } from 'rxjs/internal/operators/delay';
 
 @Component({
   selector: 'app-contacts',
@@ -13,15 +14,15 @@ export class ContactsComponent implements OnInit {
   contacts:any = [];
   constructor(private messageApp:ReadMessageComponent , private http:HttpClient, private myapp:AppComponent) { }
   ngOnInit(): void {
-    this.http.get<any[]>('http://localhost:8080/contacts/'+this.myapp.email+"/").subscribe(res => {
+    this.http.get<any[]>('http://localhost:8080/contacts/'+this.myapp.email+"/").pipe(delay(500)).subscribe(res => {
       this.contacts = res;
-    });  
+    });
   }
 
   reload(){
     this.http.get<any[]>('http://localhost:8080/contacts/'+this.myapp.email+"/").subscribe(res => {
       this.contacts = res;
-    });    
+    });
   }
 
   openAddContactWindow(){
@@ -51,7 +52,7 @@ export class ContactsComponent implements OnInit {
 
     this.http.get<any[]>('http://localhost:8080/contacts/'+this.myapp.email+"/").subscribe(res => {
       this.contacts = res;
-    });    
+    });
   }
 
 }
