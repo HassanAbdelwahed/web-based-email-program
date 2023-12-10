@@ -4,7 +4,7 @@ The aim of the project is to implement the basic functionalities of a mail serve
 E-mail service Application offer a big number of features such as sending and receiving mails, deleting 
 and drafting mails, viewing contacts, adding and deleting contacts, sending attachments 
 and a lot of other features.
-## Features
+## subset of Features (not all of them mentioned below)
   - sending, deleting, drafting mails
   - viewing inbox, sent, draft and trash folders
   - adding, deleting, and viewing contacts
@@ -12,6 +12,7 @@ and a lot of other features.
   - sorting mails by data, read and unread, level of importance
   - searching of mails by any keyword in the mail
   - folder of important messages.
+  - searching of mails by sender, receiver, importance, date, subject, body.
  
 ## Installation
 This Apllication require angular and spring boot installation.
